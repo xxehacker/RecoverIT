@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-// import Header from "../../components/Header";
 import Footer from "../../components/Footer";
+import Reviews from "../../components/Home/Reviews";
+import HeroSection from "@/components/Home/HeroSection";
 
 import {
-  Search,
   Map,
   Shield,
   AlertTriangle,
@@ -73,136 +73,16 @@ const Home = () => {
 
       <main className="relative">
         {/* Hero Section */}
-        <div className="relative px-6 py-24 overflow-hidden flex flex-col items-center justify-center border-b border-blue-900/30 min-h-screen">
-          <div className="absolute inset-0 bg-blue-600/5" />
-          <div className="mx-auto max-w-6xl">
-            <div className="flex flex-col md:flex-row items-center gap-12">
-              <div className="flex-1 text-center md:text-left">
-                <div className="inline-flex h-8 items-center gap-2 rounded-full border border-blue-500/20 bg-blue-500/10 px-4 text-sm text-blue-400">
-                  <AlertTriangle className="h-6 w-6" />
-                  Campus Lost & Found
-                </div>
-
-                <h1 className="mt-6 text-5xl md:text-7xl font-bold text-white">
-                  Find What !
-                  <span className="block mt-2 bg-gradient-to-r from-green-400 to-green-600 bg-clip-text text-transparent">
-                    You've
-                  </span>
-                  <span className="block mt-2 bg-gradient-to-r from-blue-400 to-blue-600 bg-clip-text text-transparent">
-                    Lost On Campus
-                  </span>
-                </h1>
-
-                <p className="mt-6 text-lg text-slate-300">
-                  Your ultimate solution for reporting and finding lost items
-                  across campus. Reunite with your belongings quickly and
-                  easily.
-                </p>
-
-                <div className="mt-10 flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
-                  <Link
-                    to="/lost-reports/post"
-                    className="inline-flex cursor-pointer h-12 items-center justify-center gap-2 rounded-lg bg-blue-600 px-8 text-sm font-medium text-white transition-all z-10 hover:bg-blue-500"
-                  >
-                    Report Lost Item
-                    <AlertTriangle className="h-4 w-4" />
-                  </Link>
-                  <Link
-                    to="/found-reports/submit"
-                    className="inline-flex h-12 items-center  z-10 hover:bg-blue-500/20 justify-center gap-2 rounded-lg border border-blue-500/20 bg-blue-500/10 px-8 text-sm font-medium text-blue-300 transition-all"
-                  >
-                    Report Found Item
-                    <Check className="h-4 w-4" />
-                  </Link>
-                </div>
-              </div>
-
-              {/* Stats Panel */}
-              <div className="flex-1">
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  {[
-                    {
-                      label: "Items Lost",
-                      value: stats.totalLost,
-                      icon: <AlertTriangle className="h-4 w-4 text-blue-400" />,
-                    },
-                    {
-                      label: "Items Found",
-                      value: stats.totalFound,
-                      icon: <Check className="h-4 w-4 text-blue-400" />,
-                    },
-                    {
-                      label: "Items Returned",
-                      value: stats.totalReturned,
-                      icon: <RefreshCw className="h-4 w-4 text-blue-400" />,
-                    },
-                    {
-                      label: "User Success Rate",
-                      value: "94%",
-                      icon: <Shield className="h-4 w-4 text-blue-400" />,
-                    },
-                  ].map((stat, i) => (
-                    <div
-                      key={i}
-                      className="p-10 rounded-xl border border-blue-800/50 bg-slate-900/50 backdrop-blur-sm 
-                      hover:bg-green-400 hover:border-green-400 hover:text-black transition-all duration-300"
-                    >
-                      <div className="flex items-center gap-2 mb-2">
-                        <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-blue-500/10 border border-blue-500/20">
-                          {stat.icon}
-                        </div>
-                        <div className="text-sm text-white font-semibold">
-                          {stat.label}
-                        </div>
-                      </div>
-                      <div className="text-2xl font-bold text-white">
-                        {isLoading ? "..." : stat.value}
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Search Section */}
-        <div className="px-6 py-16">
-          <div className="mx-auto max-w-4xl">
-            <div className="rounded-xl border border-blue-800/30 bg-slate-900/50 p-8 backdrop-blur-sm">
-              <h2 className="text-2xl font-bold text-white text-center mb-6">
-                Find Your Lost Items
-              </h2>
-              <div className="flex flex-col md:flex-row gap-4">
-                <div className="flex-grow relative">
-                  <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                    <Search className="h-5 w-5 text-blue-400" />
-                  </div>
-                  <input
-                    type="text"
-                    placeholder="What are you looking for?"
-                    className="w-full pl-10 pr-4 py-3 bg-slate-800/80 border border-blue-800/30 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-white placeholder-slate-400"
-                  />
-                </div>
-                <select className="px-4 py-3 bg-slate-800/80 border border-blue-800/30 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-white">
-                  <option value="all">All Items</option>
-                  <option value="lost">Lost Items</option>
-                  <option value="found">Found Items</option>
-                </select>
-                <button className="px-8 py-3 bg-blue-600 hover:bg-blue-500 text-white font-medium rounded-lg transition-all">
-                  Search
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
+        <HeroSection stats={stats} isLoading={isLoading} />
 
         {/* Recent Items Section */}
         <div className="px-6 py-16">
           <div className="mx-auto max-w-6xl">
             <div className="flex flex-col md:flex-row md:items-end justify-between mb-8">
               <div>
-                <h2 className="text-3xl font-bold text-white">Recent Items</h2>
+                <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white">
+                  Recent Items
+                </h2>
                 <p className="mt-2 text-slate-400">
                   Recently reported lost and found items on campus
                 </p>
@@ -283,7 +163,9 @@ const Home = () => {
         <div className="px-6 py-24">
           <div className="mx-auto max-w-6xl">
             <div className="text-center mb-16">
-              <h2 className="text-3xl font-bold text-white">How It Works</h2>
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white">
+                How It Works
+              </h2>
               <p className="mt-4 text-slate-400">
                 Simple steps to report and recover lost items
               </p>
@@ -337,7 +219,7 @@ const Home = () => {
         <div className="px-6 py-24 bg-slate-950/50">
           <div className="mx-auto max-w-6xl">
             <div className="rounded-xl border border-blue-800/30 bg-slate-900/50 p-8 backdrop-blur-sm">
-              <h2 className="text-2xl font-bold text-white text-center mb-12">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white text-center mb-12">
                 Platform Features
               </h2>
               <div className="grid md:grid-cols-3 gap-8">
@@ -380,10 +262,25 @@ const Home = () => {
           </div>
         </div>
 
+        {/* Review Section */}
+        <div className="px-4 py-20  bg-black">
+          <div className="mx-auto max-w-6xl">
+            <div className="rounded-2xl bg-black shadow-xl backdrop-blur-sm">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white text-center mb-10">
+                What Our Students Say
+              </h2>
+              <div className="grid">
+                <Reviews />
+              </div>
+            </div>
+          </div>
+        </div>
+
         {/* CTA Section */}
+
         <div className="px-6 py-24 text-center">
           <div className="mx-auto max-w-3xl">
-            <h2 className="text-3xl font-bold text-white mb-6">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-6">
               Ready to Find What You've Lost?
             </h2>
             <p className="mb-8 text-slate-400">

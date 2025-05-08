@@ -3,12 +3,12 @@ import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
-    <footer className="bg-slate-900 text-white px-6">
+    <footer className="bg-black text-white px-10 py-10 border-t-2 border-green-800">
       <div className="container mx-auto pt-12 pb-8 max-w-6xl">
         {/* Logo and description section */}
         <div className="flex flex-col md:flex-row justify-between mb-12">
           <div className="mb-8 md:mb-0 md:w-1/3">
-            <h3 className="text-2xl font-bold text-blue-400 mb-4">RecoverIT</h3>
+            <h3 className="text-2xl font-bold text-white mb-4">RecoverIT</h3>
             <p className="text-gray-300 text-sm max-w-md">
               RecoverIT is a platform that helps you find lost items. We've been
               helping people find their lost items since 2025.
@@ -16,7 +16,7 @@ const Footer = () => {
             <div className="mt-6 flex space-x-4">
               <a
                 href="#"
-                className="text-gray-400 hover:text-blue-400 transition-colors"
+                className="text-gray-400 hover:text-green-500 transition-colors"
               >
                 <svg
                   className="h-6 w-6"
@@ -28,7 +28,7 @@ const Footer = () => {
               </a>
               <a
                 href="#"
-                className="text-gray-400 hover:text-blue-400 transition-colors"
+                className="text-gray-400 hover:text-green-500 transition-colors"
               >
                 <svg
                   className="h-6 w-6"
@@ -40,7 +40,7 @@ const Footer = () => {
               </a>
               <a
                 href="#"
-                className="text-gray-400 hover:text-blue-400 transition-colors"
+                className="text-gray-400 hover:text-white transition-colors"
               >
                 <svg
                   className="h-6 w-6"
@@ -52,7 +52,7 @@ const Footer = () => {
               </a>
               <a
                 href="#"
-                className="text-gray-400 hover:text-blue-400 transition-colors"
+                className="text-gray-400 hover:text-white transition-colors"
               >
                 <svg
                   className="h-6 w-6"
@@ -63,12 +63,18 @@ const Footer = () => {
                 </svg>
               </a>
             </div>
+            <div>
+              <p className="text-gray-300 text-sm max-w-md mt-5">
+                &copy; {new Date().getFullYear()} RecoverIT. All rights
+                reserved.
+              </p>
+            </div>
           </div>
 
           {/* Links grid */}
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 md:w-2/3">
             <div>
-              <h4 className="text-lg font-semibold mb-4 text-blue-400">
+              <h4 className="text-lg font-semibold mb-4 text-white">
                 Quick Links
               </h4>
               <ul className="space-y-3">
@@ -108,7 +114,7 @@ const Footer = () => {
             </div>
 
             <div>
-              <h4 className="text-lg font-semibold mb-4 text-blue-400">
+              <h4 className="text-lg font-semibold mb-4 text-white">
                 Services
               </h4>
               <ul className="space-y-3">
@@ -148,13 +154,13 @@ const Footer = () => {
             </div>
 
             <div>
-              <h4 className="text-lg font-semibold mb-4 text-blue-400">
+              <h4 className="text-lg font-semibold mb-4 text-white">
                 Contact Us
               </h4>
               <ul className="space-y-3 text-gray-300">
                 <li className="flex items-center">
                   <svg
-                    className="h-5 w-5 mr-3 text-blue-400"
+                    className="h-5 w-5 mr-3 text-white"
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke="currentColor"
@@ -170,7 +176,7 @@ const Footer = () => {
                 </li>
                 <li className="flex items-center">
                   <svg
-                    className="h-5 w-5 mr-3 text-blue-400"
+                    className="h-5 w-5 mr-3 text-white"
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke="currentColor"
@@ -186,7 +192,7 @@ const Footer = () => {
                 </li>
                 <li className="flex items-center">
                   <svg
-                    className="h-5 w-5 mr-3 text-blue-400"
+                    className="h-5 w-5 mr-3 text-white"
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke="currentColor"
@@ -211,36 +217,11 @@ const Footer = () => {
           </div>
         </div>
 
-        {/* Copyright section */}
-        <div className="flex flex-col md:flex-row md:items-center justify-between text-white/100 text-sm">
-          <p>
-            &copy; {new Date().getFullYear()} RecoverIT. All rights reserved.
-          </p>
-          <div className="mt-4 md:mt-0">
-            <ul className="flex space-x-6">
-              <li>
-                <Link
-                  to="/privacy"
-                  className="hover:text-white transition-colors"
-                >
-                  Privacy Policy
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="/terms"
-                  className="hover:text-white transition-colors"
-                >
-                  Terms of Service
-                </Link>
-              </li>
-              <li>
-                <Link to="/faq" className="hover:text-white transition-colors">
-                  FAQ
-                </Link>
-              </li>
-            </ul>
-          </div>
+        {/* Footer Banner Text */}
+        <div className="text-center mt-20">
+          <h1 className="text-5xl sm:text-8xl font-bold text-transparent bg-clip-text bg-gradient-to-b from-green-600 to-green-900 opacity-80">
+            RECOVERIT
+          </h1>
         </div>
       </div>
     </footer>

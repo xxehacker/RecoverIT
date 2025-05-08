@@ -14,7 +14,7 @@ const foundItemSchema = new mongoose.Schema(
     images: [{ type: String, required: true }],
     status: {
       type: String,
-      enum: ["pending", "approved", "rejected", "claimed"],
+      enum: ["pending", "approved", "rejected"],
       default: "pending",
     },
   },

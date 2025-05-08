@@ -1,0 +1,13 @@
+@keyframes glossy {
+  0% {
+    transform: translateX(-100%) skewX(-15deg);
+  }
+  100% {
+    transform: translateX(100%) skewX(-15deg);
+  }
+}
+
+.animate-glossy {
+  animation: glossy 3s infinite;
+  animation-timing-function: ease-in-out;
+} 

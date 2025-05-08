@@ -15,11 +15,4 @@
 - Contact the owner of the item
 - Claim an item
 - View all posts - lost and found
-
-
-<!-- git init
-git add README.md
-git commit -m "first commit"
-git branch -M main
-git remote add origin https://github.com/xxehacker/RecoverIT.git --> 
-<!-- git push -u origin main -->
+- Admin panel

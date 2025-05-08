@@ -2,7 +2,7 @@ import ClaimItem from "../models/claimItem.model.js";
 import FoundItem from "../models/foundItem.model.js";
 import User from "../models/user.model.js";
 
-const createClaimItem = async (req, res) => {
+const submitClaimItem = async (req, res) => {
   const {
     foundItemId,
     description,
@@ -12,12 +12,20 @@ const createClaimItem = async (req, res) => {
     additionalNotes,
     claimVerificationMethod,
   } = req.body;
-  console.log("req.body", req.body);
+  console.log(
+    foundItemId,
+    description,
+    contactInformation,
+    itemIdentifiers,
+    meetupPreference,
+    additionalNotes,
+    claimVerificationMethod
+  );
 
   if (!foundItemId || !description || !contactInformation || !itemIdentifiers) {
     return res.status(400).json({
       message:
-        "User id, found item id, description, contact information, item identifiers are required",
+        "Found item id, description, contact information, item identifiers are required",
     });
   }
 
@@ -58,16 +66,7 @@ const createClaimItem = async (req, res) => {
     attachments: imagesToSave,
     claimVerificationMethod,
   });
-
-  // update found item status to claimed
-  await FoundItem.findByIdAndUpdate(
-    foundItemId,
-    {
-      status: "claimed",
-    },
-    { new: true }
-  );
-
+  
   return res.status(201).json({
     message: "Claim item created successfully",
     claimItem: createClaimItem,
@@ -112,7 +111,7 @@ const updateClaimItem = async (req, res) => {};
 const deleteClaimItem = async (req, res) => {};
 
 export {
-  createClaimItem,
+  submitClaimItem,
   getClaimItems,
   getClaimItem,
   updateClaimItem,

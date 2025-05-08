@@ -1,7 +1,7 @@
 import express from "express";
 import { protectRoute, isAdmin } from "../middlewares/auth.middleware.js";
 import {
-  createClaimItem,
+  submitClaimItem,
   getClaimItems,
   getClaimItem,
   updateClaimItem,
@@ -17,7 +17,7 @@ router.route("/").get(protectRoute, isAdmin, getClaimItems);
 // create claim item - user only
 router
   .route("/")
-  .post(protectRoute, upload.array("attachments"), createClaimItem);
+  .post(protectRoute, upload.array("attachments"), submitClaimItem);
 
 // get claim item - user only
 router.route("/:id").get(protectRoute, getClaimItem);

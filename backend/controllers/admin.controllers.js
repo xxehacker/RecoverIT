@@ -3,18 +3,31 @@ import ClaimItem from "../models/claimItem.model.js";
 import User from "../models/user.model.js";
 import FoundItem from "../models/foundItem.model.js";
 
+const getAllUsers = async (req, res) => {
+  try {
+    const users = await User.find().select("-password");
+    return res.status(200).json({ users });
+  } catch (error) {
+    console.log("error while getting all users", error);
+    return res.status(500).json({ message: "Internal server error" });
+  }
+};
+
 const updateLostItem = async (req, res) => {
   try {
-    const { id } = req.params;
-    const { status } = req.body;
+    const { id, status } = req.body;
 
     if (!status) {
       return res.status(400).json({ message: "Please fill all the fields" });
     }
 
-    const lostItem = await LostItem.findByIdAndUpdate(id, {
-      status,
-    });
+    const lostItem = await LostItem.findByIdAndUpdate(
+      id,
+      {
+        status,
+      },
+      { new: true }
+    );
 
     if (!lostItem) {
       return res.status(404).json({ message: "Lost item not found" });
@@ -32,8 +45,7 @@ const updateLostItem = async (req, res) => {
 
 const updateClaimItem = async (req, res) => {
   try {
-    const { id } = req.params;
-    const { status, reviewDate } = req.body;
+    const { id, status, reviewDate } = req.body;
 
     if (!status || !reviewDate) {
       return res.status(400).json({ message: "Please fill all the fields" });
@@ -60,15 +72,18 @@ const updateClaimItem = async (req, res) => {
 
 const updateFoundItem = async (req, res) => {
   try {
-    const { id } = req.params;
-    const { status } = req.body;
+    const { id, status } = req.body;
     if (!status) {
       return res.status(400).json({ message: "Please fill all the fields" });
     }
 
-    const foundItem = await FoundItem.findByIdAndUpdate(id, {
-      status,
-    });
+    const foundItem = await FoundItem.findByIdAndUpdate(
+      id,
+      {
+        status,
+      },
+      { new: true }
+    );
 
     if (!foundItem) {
       return res.status(404).json({ message: "Found item not found" });
@@ -170,4 +185,5 @@ export {
   deleteLostItem,
   deleteUser,
   deleteFoundItem,
+  getAllUsers,
 };

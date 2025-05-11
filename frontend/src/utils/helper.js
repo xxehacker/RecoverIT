@@ -1,13 +1,16 @@
+import { LuUsers, LuSearch } from "react-icons/lu";
+import { FaHome } from "react-icons/fa";
+
 export const validateEmail = (email) => {
   const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   return regex.test(email);
 };
 
 export const validatePassword = (password) => {
-  const regex = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/;
+  const regex =
+    /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/;
   return regex.test(password);
 };
-
 
 export const reviews = [
   {
@@ -54,3 +57,53 @@ export const reviews = [
   },
 ];
 
+export const SIDE_MENU_ITEMS = [
+  {
+    label: "Dashboard",
+    icon: FaHome,
+    path: "/admin/dashboard",
+  },
+  {
+    label: "Users",
+    icon: LuUsers,
+    path: "/admin/users",
+  },
+  {
+    label: "Lost Items",
+    icon: LuSearch,
+    path: "/admin/lost-items",
+  },
+  {
+    label: "Found Items",
+    icon: LuSearch,
+    path: "/admin/found-items",
+  },
+  {
+    label: "Claim Items",
+    icon: LuSearch,
+    path: "/admin/claim-items",
+  },
+];
+
+export const SIDE_MENU_USER_DATA = [
+  {
+    label: "Dashboard",
+    icon: FaHome,
+    path: "/user/dashboard",
+  },
+  {
+    label: "Lost Items",
+    icon: LuSearch,
+    path: "/user/lost-items",
+  },
+  {
+    label: "Found Items",
+    icon: LuSearch,
+    path: "/user/found-items",
+  },
+  {
+    label: "Claim Items",
+    icon: LuSearch,
+    path: "/user/claim-items",
+  },
+];

@@ -8,17 +8,22 @@ import {
   deleteLostItem,
   deleteUser,
   deleteFoundItem,
+  getAllUsers
 } from "../controllers/admin.controllers.js";
 
 const router = express.Router();
 
+// all get routes
+// get all users
+router.get("/users", protectRoute, isAdmin, getAllUsers);
+
 // all update routes
 // update lost item
-router.put("/lost-items/:id", protectRoute, isAdmin, updateLostItem);
+router.put("/update-lost-item", protectRoute, isAdmin, updateLostItem);
 // update claim item
-router.put("/claim-items/:id", protectRoute, isAdmin, updateClaimItem);
+router.put("/update-claim-item", protectRoute, isAdmin, updateClaimItem);
 // update found item
-router.put("/found-items/:id", protectRoute, isAdmin, updateFoundItem);
+router.put("/update-found-item", protectRoute, isAdmin, updateFoundItem);
 
 // all delete routes
 // delete lost item

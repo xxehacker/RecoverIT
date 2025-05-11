@@ -1,7 +1,7 @@
 import { useContext, useEffect } from "react";
 import React from "react";
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
-import { ToastContainer } from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
 import { UserContext } from "./context/userContext";
 import Home from "./pages/home/Home";
 import Login from "./pages/auth/Login";
@@ -16,10 +16,15 @@ import SubmitFound from "./pages/found/SubmitFound";
 import ErrorPage from "./pages/ErrorPage";
 import FoundItem from "./pages/found/FoundItem";
 import ClaimPage from "./pages/claim/ClaimPage";
+import DashboardAdminPage from "./pages/dashboard/admin/DashboardAdminPage";
+import { useNavigate } from "react-router-dom";
+import ManageUsers from "./pages/dashboard/admin/ManageUsers";
+import ManageLosts from "./pages/dashboard/admin/ManageLosts";
+import ManageFounds from "./pages/dashboard/admin/ManageFounds";
 
 function App() {
-  const { user } = useContext(UserContext);
-  const [loading, setLoading] = React.useState(false);
+  const { user, loading, setLoading } = useContext(UserContext);
+  console.log(user);
 
   useEffect(() => {
     setTimeout(() => {
@@ -38,6 +43,25 @@ function App() {
       </div>
     );
   }
+
+  const AdminRoute = ({ children }) => {
+    if (!user) return <Navigate to="/login" replace />;
+    if (user.role !== "admin")
+      return (
+        <div className="flex flex-col justify-center items-center h-[90vh]">
+          <h1 className="text-4xl font-bold text-red-500">
+            You are not authorized to access this page
+          </h1>
+          <button
+            className="bg-green-500 text-semibold text-white px-4 py-4 rounded-md mt-4 hover:bg-green-600 cursor-pointer"
+            onClick={() => (window.location.href = "/")}
+          >
+            Go to Home
+          </button>
+        </div>
+      );
+    return children;
+  };
 
   return (
     <>
@@ -113,7 +137,40 @@ function App() {
               </AuthChecker>
             }
           />
+          {/* admin protected routes */}
 
+          <Route
+            path="/admin/dashboard"
+            element={
+              <AdminRoute>
+                <DashboardAdminPage />
+              </AdminRoute>
+            }
+          />
+          <Route
+            path="/admin/users"
+            element={
+              <AdminRoute>
+                <ManageUsers />
+              </AdminRoute>
+            }
+          />
+          <Route
+            path="/admin/lost-items"
+            element={
+              <AdminRoute>
+                <ManageLosts />
+              </AdminRoute>
+            }
+          />
+          <Route
+            path="/admin/found-items"
+            element={
+              <AdminRoute>
+                <ManageFounds />
+              </AdminRoute>
+            }
+          />
           <Route
             path="*"
             element={

@@ -1,6 +1,6 @@
 import { Disclosure } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
-import { SiBrandfolder, SiMoneygram , SiRecoil } from "react-icons/si";
+import { SiRecoil } from "react-icons/si";
 import { RiLoginCircleLine } from "react-icons/ri";
 import { FaRegUser } from "react-icons/fa";
 import { Link } from "react-router-dom";
@@ -21,6 +21,8 @@ import { toast } from "react-toastify";
 
 export default function PublicNavbar() {
   const { user, setUser, loading } = useContext(UserContext);
+
+  const isAdmin = user?.role === "admin";
 
   const logoutHandler = () => {
     localStorage.removeItem("token");
@@ -62,13 +64,16 @@ export default function PublicNavbar() {
       description:
         "Use your unique tracking code to check the status of your lost or found item report anytime.",
     },
-    {
-      title: "Claim Item",
-      href: "/claim-product",
-      description:
-        "Claim an item by providing the necessary details and proof of ownership.",
-    },
   ];
+
+  if (isAdmin) {
+    components.push({
+      title: "Admin Dashboard",
+      href: "/admin/dashboard",
+      description:
+        "Access the admin dashboard to manage reports, users, and system settings.",
+    });
+  }
 
   return (
     <Disclosure as="nav" className="bg-white/95 border-b border-gray-400">

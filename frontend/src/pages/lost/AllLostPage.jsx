@@ -32,6 +32,11 @@ const AllLostPage = () => {
       <h1 className="text-2xl font-bold text-center md:text-left">
         All Lost Reports
       </h1>
+      {lostReports.length === 0 && (
+        <div className="rounded-lg mt-10 border p-8 text-center h-[50vh] w-full flex justify-center items-center">
+          <p className="text-muted-foreground">No Lost Reports</p>
+        </div>
+      )}
       <div className="mt-4 rounded-lg grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 justify-items-center">
         {lostReports.map((report) => (
           <Link to={`/lost-reports/${report?._id}`} key={report?._id}>

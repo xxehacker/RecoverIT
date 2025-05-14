@@ -43,6 +43,11 @@ const AllFoundItems = () => {
       <h1 className="text-2xl font-bold text-center md:text-left">
         All Found Items
       </h1>
+      {foundReports.length === 0 && (
+        <div className="rounded-lg mt-10 border p-8 text-center h-[50vh] w-full flex justify-center items-center">
+          <p className="text-muted-foreground">No found reports</p>
+        </div>
+      )}
       <div className="mt-4 rounded-lg grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 justify-items-center">
         {foundReports.slice(page * 8 - 8, page * 8).map((item) => (
           <Link to={`/found-reports/${item._id}`} key={item._id}>

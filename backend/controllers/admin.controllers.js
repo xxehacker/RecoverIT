@@ -6,9 +6,28 @@ import FoundItem from "../models/foundItem.model.js";
 const getAllUsers = async (req, res) => {
   try {
     const users = await User.find().select("-password");
-    return res.status(200).json({ users });
+    return res.status(200).json({
+      message: "Users fetched successfully",
+      users,
+    });
   } catch (error) {
     console.log("error while getting all users", error);
+    return res.status(500).json({ message: "Internal server error" });
+  }
+};
+
+const getAllClaims = async (req, res) => {
+  try {
+    const claims = await ClaimItem.find()
+      .populate("foundItemId", "title description location foundDate images")
+      .populate("userId", "username email role");
+
+    return res.status(200).json({
+      message: "Claims fetched successfully",
+      claims,
+    });
+  } catch (error) {
+    console.log("error while getting all claims", error);
     return res.status(500).json({ message: "Internal server error" });
   }
 };
@@ -186,4 +205,5 @@ export {
   deleteUser,
   deleteFoundItem,
   getAllUsers,
+  getAllClaims,
 };

@@ -12,6 +12,11 @@ const claimItemSchema = new mongoose.Schema(
       ref: "FoundItem",
       required: true,
     },
+    title: {
+      type: String,
+      required: true,
+      trim: true,
+    },
     description: { type: String, required: true },
     claimDate: {
       type: Date,
@@ -31,14 +36,6 @@ const claimItemSchema = new mongoose.Schema(
       uniqueMarks: { type: String },
       purchaseReceipt: { type: String },
     },
-    // deliveryAddress: {
-    //   streetAddress: { type: String },
-    //   cityName: { type: String },
-    //   stateOrProvince: { type: String },
-    //   postalCode: { type: String },
-    //   countryName: { type: String, default: "United States" },
-    //   addressNotes: { type: String }, // For delivery instructions or apartment numbers
-    // },
     meetupPreference: {
       type: String,
       enum: ["inPerson", "courier", "pickupLocation"],

@@ -43,6 +43,6 @@ export const API_ENDPOINTS = {
     DELETE_FOUND_ITEM: (id) => `/api/v1/admin/foundItems/${id}`, // delete found item by id
     DELETE_CLAIM_ITEM: (id) => `/api/v1/admin/claimItems/${id}`, // delete claim item by id
     // GET DASHBOARD DATA
-    GET_ADMIN_DASHBOARD_DATA: "/api/v1/admin/dashboard", // get dashboard data - method get
+    GET_ADMIN_DASHBOARD_DATA: "/api/v1/dashboard/admin", // get dashboard data - method get
   },
 };

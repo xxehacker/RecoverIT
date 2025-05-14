@@ -8,7 +8,8 @@ import {
   deleteLostItem,
   deleteUser,
   deleteFoundItem,
-  getAllUsers
+  getAllUsers,
+  getAllClaims,
 } from "../controllers/admin.controllers.js";
 
 const router = express.Router();
@@ -16,6 +17,8 @@ const router = express.Router();
 // all get routes
 // get all users
 router.get("/users", protectRoute, isAdmin, getAllUsers);
+// get all claims
+router.get("/claimItems", protectRoute, isAdmin, getAllClaims);
 
 // all update routes
 // update lost item

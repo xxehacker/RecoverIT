@@ -21,6 +21,7 @@ import { useNavigate } from "react-router-dom";
 import ManageUsers from "./pages/dashboard/admin/ManageUsers";
 import ManageLosts from "./pages/dashboard/admin/ManageLosts";
 import ManageFounds from "./pages/dashboard/admin/ManageFounds";
+import ManageClaims from "./pages/dashboard/admin/ManageClaims";
 
 function App() {
   const { user, loading, setLoading } = useContext(UserContext);
@@ -168,6 +169,14 @@ function App() {
             element={
               <AdminRoute>
                 <ManageFounds />
+              </AdminRoute>
+            }
+          />
+          <Route
+            path="/admin/claim-items"
+            element={
+              <AdminRoute>
+                <ManageClaims />
               </AdminRoute>
             }
           />

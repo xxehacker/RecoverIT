@@ -14,6 +14,8 @@ const ReportLostItem = () => {
   const [error, setError] = React.useState(null);
   const [loading, setLoading] = React.useState(false);
 
+  console.log(images)
+
   const handleLostReport = async (e) => {
     e.preventDefault();
     setLoading(true);
@@ -72,8 +74,8 @@ const ReportLostItem = () => {
             setTitle={setTitle}
             location={location}
             setLocation={setLocation}
-            dateLost={dateLost}
-            setDateLost={setDateLost}
+            date={dateLost}
+            setDate={setDateLost}
             description={description}
             setDescription={setDescription}
             error={error}

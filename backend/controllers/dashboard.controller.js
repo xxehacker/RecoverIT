@@ -18,7 +18,6 @@ const getAdminDashboardData = async (req, res) => {
       totalPendingFoundItems,
       totalApprovedFoundItems,
       totalRejectedFoundItems,
-      totalClaimedFoundItems,
 
       totalPendingClaimItems,
       totalApprovedClaimItems,
@@ -37,27 +36,24 @@ const getAdminDashboardData = async (req, res) => {
       FoundItem.countDocuments({ status: "pending" }),
       FoundItem.countDocuments({ status: "approved" }),
       FoundItem.countDocuments({ status: "rejected" }),
-      FoundItem.countDocuments({ status: "claimed" }),
 
       ClaimItem.countDocuments({ status: "pending" }),
       ClaimItem.countDocuments({ status: "approved" }),
       ClaimItem.countDocuments({ status: "rejected" }),
       ClaimItem.countDocuments({ status: "inReview" }),
     ]);
-
-    // get all users
-    const allUsers = await User.find({}).select("-password");
+    console.log("totalPendingClaimItems", totalPendingClaimItems);
 
     // claim items
-    const allClaimItems = await ClaimItem.find({})
-      .populate("foundItemId", "title description location foundDate images")
-      .populate("userId", "username email");
+    // const allClaimItems = await ClaimItem.find({})
+    //   .populate("foundItemId", "title description location foundDate images")
+    //   .populate("userId", "username email");
 
     // Fetch recent 10 claim items
     const recentClaimItems = await ClaimItem.find()
       .sort({ createdAt: -1 })
       .limit(10)
-      .select("foundItemId description claimDate contactInformation status");
+      .select("foundItemId title description claimDate status meetupPreference claimDate");
 
     return res.status(200).json({
       counts: {
@@ -75,16 +71,14 @@ const getAdminDashboardData = async (req, res) => {
         pending: totalPendingFoundItems,
         approved: totalApprovedFoundItems,
         rejected: totalRejectedFoundItems,
-        claimed: totalClaimedFoundItems,
       },
       claimItems: {
         pending: totalPendingClaimItems,
         approved: totalApprovedClaimItems,
         rejected: totalRejectedClaimItems,
         inReview: totalPendingInReviewClaimItems,
-        allClaimItems,
+        // allClaimItems,
       },
-      users: allUsers,
       recentClaimItems,
     });
   } catch (error) {

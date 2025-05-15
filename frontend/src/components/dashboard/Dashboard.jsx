@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   Users,
   AlertCircle,
@@ -9,8 +9,14 @@ import {
   CalendarDays,
 } from "lucide-react";
 import { Link } from "react-router-dom";
+import LineChart from "../charts/LineChart";
+import AXIOS_INSTANCE from "@/utils/axiosInstance";
+import { API_ENDPOINTS } from "@/utils/apiPath";
 
 export default function Dashboard({ data }) {
+  const [LineChartData, setLineChartData] = useState(false);
+  const [chartData, setChartData] = useState({});
+
   const counts = {
     lostItems: data?.counts?.lostItems,
     foundItems: data?.counts?.foundItems,
@@ -68,7 +74,23 @@ export default function Dashboard({ data }) {
     { month: "Apr", lost: 4, found: 3, claims: 3 },
     { month: "May", lost: 3, found: 1, claims: 1 },
   ];
-  console.log(data);
+  // console.log(data);
+
+  const fetchChartData = async () => {
+    try {
+      const response = await AXIOS_INSTANCE.get(
+        API_ENDPOINTS.VISIT.GET_VISITOR_COUNTS
+      );
+      setChartData(response.data);
+      console.log(response.data);
+    } catch (error) {
+      console.error("Error fetching chart data:", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchChartData();
+  }, []);
 
   return (
     <div className="bg-white/50 min-h-screen p-6">
@@ -340,6 +362,12 @@ export default function Dashboard({ data }) {
             </div>
           </div>
         </div>
+
+        {chartData ? (
+          <div className="mb-4">
+            <LineChart data={chartData} />
+          </div>
+        ) : null}
 
         {/* Most Recent Item */}
         <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">

@@ -2,6 +2,7 @@ import express from "express";
 import cors from "cors";
 import cookieParser from "cookie-parser";
 import dotenv from "dotenv";
+import visitorCountMiddleware from "./middlewares/visitorCount.middleware.js";
 
 dotenv.config({
   path: ".env",
@@ -29,6 +30,7 @@ import contactRouter from "./routes/contact.routes.js";
 import claimItemRouter from "./routes/claimItem.routes.js";
 import dashboardRouter from "./routes/dashboard.routes.js";
 import adminRouter from "./routes/admin.routes.js";
+import visitorRouter from "./routes/visitor.routes.js";
 
 //routes declaration
 app.use("/api/v1/users", userRouter);
@@ -36,9 +38,15 @@ app.use("/api/v1/lostItems", lostItemRouter);
 app.use("/api/v1/foundItems", foundItemRouter);
 app.use("/api/v1/contact", contactRouter);
 app.use("/api/v1/claimItems", claimItemRouter);
+// visitor routes
+app.use("/api/v1/visitorsCount", visitorRouter);
 
 // user management routes by admin
 app.use("/api/v1/dashboard", dashboardRouter);
 app.use("/api/v1/admin", adminRouter);
+
+app.get("/", visitorCountMiddleware, (req, res) => {
+  res.send("Homepage visited. Visitor counted.");
+});
 
 export { app };

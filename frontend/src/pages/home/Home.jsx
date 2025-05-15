@@ -25,6 +25,7 @@ const Home = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
+    fetch("http://localhost:9000");
     setTimeout(() => {
       setRecentItems([
         {

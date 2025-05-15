@@ -45,4 +45,7 @@ export const API_ENDPOINTS = {
     // GET DASHBOARD DATA
     GET_ADMIN_DASHBOARD_DATA: "/api/v1/dashboard/admin", // get dashboard data - method get
   },
+  VISIT: {
+    GET_VISITOR_COUNTS: "/api/v1/visitorsCount", // get visitor counts
+  },
 };

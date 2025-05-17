@@ -115,7 +115,7 @@ export default function Dashboard({ data }) {
         {/* Summary Cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
           <Link to="/admin/lost-items">
-            <div className="bg-gradient-to-bl from-red-100 via-red-200 to-red-400 rounded-lg p-6 border border-red-100 cursor-pointer">
+            <div className="bg-gradient-to-bl from-red-100 via-red-200 to-red-400 shadow-2xl shadow-slate-500/30 rounded-lg p-6 border border-red-100 cursor-pointer">
               <div className="flex items-center justify-between mb-4">
                 <div className="bg-red-100 p-2 rounded-full">
                   <AlertCircle className="h-6 w-6 text-red-500" />
@@ -135,7 +135,7 @@ export default function Dashboard({ data }) {
           </Link>
 
           <Link to="/admin/found-items">
-            <div className="bg-gradient-to-tl from-green-100 via-green-200 to-green-400 rounded-lg p-6 border border-green-100 cursor-pointer">
+            <div className="bg-gradient-to-tl shadow-2xl shadow-slate-500/30 from-green-100 via-green-200 to-green-400 rounded-lg p-6 border border-green-100 cursor-pointer">
               <div className="flex items-center justify-between mb-4">
                 <div className="bg-green-100 p-2 rounded-full">
                   <CheckCircle className="h-6 w-6 text-green-500" />
@@ -155,7 +155,7 @@ export default function Dashboard({ data }) {
           </Link>
 
           <Link to="/admin/claim-items">
-            <div className="bg-gradient-to-br from-purple-100 via-purple-200 to-purple-400 rounded-lg p-6 border border-purple-100 cursor-pointer">
+            <div className="bg-gradient-to-br shadow-2xl shadow-slate-500/30 from-purple-100 via-purple-200 to-purple-400 rounded-lg p-6 border border-purple-100 cursor-pointer">
               <div className="flex items-center justify-between mb-4">
                 <div className="bg-purple-100 p-2 rounded-full">
                   <Package className="h-6 w-6 text-purple-500" />
@@ -175,7 +175,7 @@ export default function Dashboard({ data }) {
           </Link>
 
           <Link to="/admin/users">
-            <div className="bg-gradient-to-tr from-blue-100 via-blue-200 to-blue-400 rounded-lg p-6 border border-blue-100 cursor-pointer">
+            <div className="bg-gradient-to-tr shadow-2xl shadow-slate-500/30 from-blue-100 via-blue-200 to-blue-400 rounded-lg p-6 border border-blue-100 cursor-pointer">
               <div className="flex items-center justify-between mb-4">
                 <div className="bg-blue-100 p-2 rounded-full">
                   <Users className="h-6 w-6 text-blue-500" />

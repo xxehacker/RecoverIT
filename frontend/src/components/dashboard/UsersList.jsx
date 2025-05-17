@@ -68,7 +68,7 @@ const UsersList = () => {
   }, []);
   return (
     <DashboardLayout activeMenu="Users">
-      <div className="card">
+      <div className="card mt-10">
         <h1 className="text-2xl font-bold mb-5">Users List</h1>
 
         <div className="flex justify-between items-center">

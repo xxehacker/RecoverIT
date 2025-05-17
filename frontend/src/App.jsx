@@ -22,6 +22,8 @@ import ManageUsers from "./pages/dashboard/admin/ManageUsers";
 import ManageLosts from "./pages/dashboard/admin/ManageLosts";
 import ManageFounds from "./pages/dashboard/admin/ManageFounds";
 import ManageClaims from "./pages/dashboard/admin/ManageClaims";
+import ContactUs from "./pages/ContactPage";
+import AboutUs from "./pages/AboutPage";
 
 function App() {
   const { user, loading, setLoading } = useContext(UserContext);
@@ -180,6 +182,8 @@ function App() {
               </AdminRoute>
             }
           />
+          <Route path="about" element={<AboutUs />} />
+          <Route path="/contact" element={<ContactUs />} />
           <Route
             path="*"
             element={

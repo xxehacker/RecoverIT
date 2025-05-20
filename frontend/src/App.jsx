@@ -24,6 +24,7 @@ import ManageFounds from "./pages/dashboard/admin/ManageFounds";
 import ManageClaims from "./pages/dashboard/admin/ManageClaims";
 import ContactUs from "./pages/ContactPage";
 import AboutUs from "./pages/AboutPage";
+import FAQPage from "./pages/FAQPage";
 
 function App() {
   const { user, loading, setLoading } = useContext(UserContext);
@@ -184,6 +185,7 @@ function App() {
           />
           <Route path="about" element={<AboutUs />} />
           <Route path="/contact" element={<ContactUs />} />
+          <Route path="/faqs" element={<FAQPage />} />
           <Route
             path="*"
             element={

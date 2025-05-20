@@ -1,6 +1,9 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { Send, MapPin, Phone, Mail, CheckCircle } from "lucide-react";
+import AXIOS_INSTANCE from "@/utils/axiosInstance";
+import { API_ENDPOINTS } from "@/utils/apiPath";
+import { toast } from "react-toastify";
 
 export default function ContactUs() {
   const [formData, setFormData] = useState({
@@ -47,7 +50,7 @@ export default function ContactUs() {
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const newErrors = validate();
 
@@ -59,25 +62,30 @@ export default function ContactUs() {
     setIsSubmitting(true);
 
     // Simulate API call
-    setTimeout(() => {
-      setIsSubmitting(false);
-      setIsSubmitted(true);
+    try {
+      const response = await AXIOS_INSTANCE.post(
+        API_ENDPOINTS.CONTACT.SUBMIT_CONTACT,
+        formData
+      );
 
-      // Reset form
-      setFormData({
-        firstName: "",
-        lastName: "",
-        email: "",
-        mobile: "",
-        subject: "",
-        message: "",
-      });
+      if (response.data?.message) {
+        toast.success("Contact Form Successfully Submitted");
+      }
+    } catch (error) {
+      console.log("Error during submitting contact form");
+      return new Error("Error Submitting contact form");
+    }
 
-      // Reset submission status after 5 seconds
-      setTimeout(() => {
-        setIsSubmitted(false);
-      }, 5000);
-    }, 1500);
+    setIsSubmitting(false);
+    setFormData({
+      firstName: "",
+      lastName: "",
+      email: "",
+      mobile: "",
+      subject: "",
+      message: "",
+    });
+    setIsSubmitted(true);
   };
 
   const containerVariants = {

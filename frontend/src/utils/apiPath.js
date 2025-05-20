@@ -48,4 +48,7 @@ export const API_ENDPOINTS = {
   VISIT: {
     GET_VISITOR_COUNTS: "/api/v1/visitorsCount", // get visitor counts
   },
+  CONTACT: {
+    SUBMIT_CONTACT: "/api/v1/contact",
+  },
 };

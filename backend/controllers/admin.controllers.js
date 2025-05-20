@@ -64,16 +64,22 @@ const updateLostItem = async (req, res) => {
 
 const updateClaimItem = async (req, res) => {
   try {
-    const { id, status, reviewDate } = req.body;
+    let { id, status, reviewDate } = req.body;
 
-    if (!status || !reviewDate) {
+    if (!status) {
       return res.status(400).json({ message: "Please fill all the fields" });
+    }
+
+    if (reviewDate) {
+      reviewDate = new Date(reviewDate);
+    } else {
+      reviewDate = null;
     }
 
     const claimItem = await ClaimItem.findByIdAndUpdate(id, {
       status,
       reviewDate,
-    });
+    }, { new: true });
 
     if (!claimItem) {
       return res.status(404).json({ message: "Claim item not found" });

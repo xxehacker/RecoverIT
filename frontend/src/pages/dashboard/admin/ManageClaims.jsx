@@ -14,14 +14,14 @@ const ManageClaims = () => {
   const onStatusChange = async (id, status) => {
     try {
       const response = await AXIOS_INSTANCE.put(
-        API_ENDPOINTS.ADMIN.UPDATE_CLAIM,
+        API_ENDPOINTS.ADMIN.UPDATE_CLAIM_ITEM,
         { id, status }
       );
       if (response.status === 200) {
-        console.log(response.data?.claim);
+        console.log(response.data?.claimItem);
         toast.success(response.data?.message || "Claim status updated");
         setClaims((prev) =>
-          prev.map((item) => (item._id === id ? response.data?.claim : item))
+          prev.map((item) => (item._id === id ? response.data?.claimItem : item))
         ); // update the lost item in the state
       }
     } catch (error) {
@@ -54,8 +54,7 @@ const ManageClaims = () => {
         <div className="space-y-4">
           {claims.map((item) => (
             <ManageClaimCard
-              type={"Claim"}
-              key={item._id}
+              type={"Claim"}           
               item={item}
               onStatusChange={onStatusChange}
               onDelete={() => {}}

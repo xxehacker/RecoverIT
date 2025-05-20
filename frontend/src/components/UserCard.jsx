@@ -8,10 +8,7 @@ export default function UserCard({ info }) {
       className="min-h-[30rem] w-full flex items-center justify-center"
       key={info?.index}
     >
-      <PinContainer
-        title="/ui.aceternity.com"
-        href="https://twitter.com/xxehacker0x1"
-      >
+      <PinContainer title="Team Member" href="https://twitter.com/xxehacker0x1">
         <div className="flex basis-full flex-col p-4 tracking-tight text-slate-100/50 sm:basis-1/2 w-[20rem] h-[20rem] lg:w-[30rem] lg:h-[30rem] ">
           <h3 className="max-w-xs !pb-2 !m-0 font-bold  text-base text-slate-100">
             {info?.user?.name}

@@ -82,57 +82,12 @@ const teamMembers = [
   },
 ];
 
-// Company values
-const values = [
-  {
-    title: "Innovation",
-    description:
-      "We push boundaries and challenge the status quo to create meaningful solutions.",
-    icon: <Lightbulb className="h-8 w-8 text-blue-500" />,
-  },
-  {
-    title: "Excellence",
-    description:
-      "We strive for excellence in everything we do, from product quality to customer service.",
-    icon: <Trophy className="h-8 w-8 text-blue-500" />,
-  },
-  {
-    title: "Integrity",
-    description:
-      "We operate with transparency and honesty in all our interactions.",
-    icon: <Heart className="h-8 w-8 text-blue-500" />,
-  },
-  {
-    title: "Collaboration",
-    description:
-      "We believe the best solutions come from diverse teams working together.",
-    icon: <Users className="h-8 w-8 text-blue-500" />,
-  },
-];
-
-// Timeline data
-const timeline = [
-  {
-    year: "2015",
-    event: "Company founded with a vision to revolutionize the industry",
-  },
-  { year: "2017", event: "Launched our first product to critical acclaim" },
-  { year: "2019", event: "Expanded operations to international markets" },
-  { year: "2021", event: "Secured major funding to accelerate growth" },
-  {
-    year: "2023",
-    event: "Reached milestone of serving over 1 million customers",
-  },
-  { year: "2024", event: "Opened new headquarters and research facility" },
-];
-
 // Main component
 export default function AboutUs() {
   const [activeTab, setActiveTab] = useState("mission");
   const [animateItems, setAnimateItems] = useState(false);
 
   useEffect(() => {
-    // Trigger animations after component mounts
     setAnimateItems(true);
   }, []);
 
@@ -266,8 +221,8 @@ export default function AboutUs() {
               </CardHeader>
               <CardContent className="space-y-4">
                 <p>
-                  Our Lost and Found system was created by a team of students in
-                  2025 who recognized the everyday challenges faced by
+                  * Our Lost and Found system was created by a team of students
+                  in 2025 who recognized the everyday challenges faced by
                   individuals trying to recover their lost items, especially in
                   busy environments like University Campus.
                 </p>

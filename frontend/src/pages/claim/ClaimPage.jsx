@@ -25,6 +25,7 @@ export default function ClaimRequestForm() {
   const [currentStep, setCurrentStep] = useState(1);
   const [formData, setFormData] = useState({
     foundItemId: "",
+    title: "",
     description: "",
     contactInformation: {
       phone: "",
@@ -105,6 +106,7 @@ export default function ClaimRequestForm() {
     const payload = new FormData();
 
     payload.append("foundItemId", formData.foundItemId);
+    payload.append("title", formData.title);
     payload.append("description", formData.description);
     payload.append("meetupPreference", formData.meetupPreference);
     payload.append("additionalNotes", formData.additionalNotes);
@@ -156,6 +158,19 @@ export default function ClaimRequestForm() {
   const renderItemDetailsSection = () => {
     return (
       <div className="space-y-6">
+        <div>
+          <label className="text-gray-700 font-medium mb-2 flex items-center">
+            Item Title <span className="text-red-500 ml-1">*</span>
+          </label>
+          <input
+            type="text"
+            name="title"
+            value={formData.title}
+            onChange={(e) => handleInputChange(e)}
+            className="w-full border border-gray-300 rounded-lg py-3 px-4 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200 text-gray-700"
+            placeholder="Enter the title of the item you found"
+          />
+        </div>
         <div className="mb-6">
           <label className="text-gray-700 font-medium mb-2 flex items-center">
             Item Description <span className="text-red-500 ml-1">*</span>
@@ -473,6 +488,12 @@ export default function ClaimRequestForm() {
         </div>
 
         <div className="space-y-6">
+          <div className="bg-blue-50 rounded-lg p-4">
+            <h4 className="text-md font-semibold text-blue-700 mb-2 flex items-center">
+              <FaBox className="mr-2" /> Item Title
+            </h4>
+            <p className="text-gray-700">{formData.title || "Not provided"}</p>
+          </div>
           <div className="bg-blue-50 rounded-lg p-4">
             <h4 className="text-md font-semibold text-blue-700 mb-2 flex items-center">
               <FaBox className="mr-2" /> Item Description

@@ -5,6 +5,7 @@ import User from "../models/user.model.js";
 const submitClaimItem = async (req, res) => {
   const {
     foundItemId,
+    title,
     description,
     contactInformation,
     itemIdentifiers,
@@ -22,10 +23,10 @@ const submitClaimItem = async (req, res) => {
     claimVerificationMethod
   );
 
-  if (!foundItemId || !description || !contactInformation || !itemIdentifiers) {
+  if (!foundItemId || !title || !description || !contactInformation || !itemIdentifiers) {
     return res.status(400).json({
       message:
-        "Found item id, description, contact information, item identifiers are required",
+        "Found item id, title, description, contact information, item identifiers are required",
     });
   }
 
@@ -58,6 +59,7 @@ const submitClaimItem = async (req, res) => {
   const createClaimItem = await ClaimItem.create({
     userId: user._id,
     foundItemId,
+    title,
     description,
     contactInformation,
     itemIdentifiers,

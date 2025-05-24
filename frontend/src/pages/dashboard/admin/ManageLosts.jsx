@@ -28,7 +28,24 @@ const ManageLosts = () => {
       toast.error(error.response.data?.message || "Failed to update lost item");
     }
   };
-  console.log(lostItems);
+  const handleDelete = async (id) => {
+      setLoading(true);
+      setError(null);
+      try {
+        const response = await AXIOS_INSTANCE.delete(
+          API_ENDPOINTS.ADMIN.DELETE_LOST_ITEM(id)
+        );
+        if (response.status === 200) {
+          toast.success(
+            response.data.message || "Found Item has been deleted successfully"
+          );
+        }
+      } catch (error) {
+        setError(error.response.data.message || "Something went wrong");
+      } finally {
+        setLoading(false);
+      }
+    };
 
   useEffect(() => {
     const fetchLostItems = async () => {
@@ -57,7 +74,7 @@ const ManageLosts = () => {
               key={item._id}
               item={item}
               onStatusChange={onStatusChange}
-              onDelete={() => {}}
+              onDelete={handleDelete}
             />
           ))}
           {lostItems.length === 0 && (

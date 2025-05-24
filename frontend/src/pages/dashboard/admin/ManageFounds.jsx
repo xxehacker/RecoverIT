@@ -31,6 +31,25 @@ const ManageFounds = () => {
     }
   };
 
+    const handleDelete = async (id) => {
+      setLoading(true);
+      setError(null);
+      try {
+        const response = await AXIOS_INSTANCE.delete(
+          API_ENDPOINTS.ADMIN.DELETE_FOUND_ITEM(id)
+        );
+        if (response.status === 200) {
+          toast.success(
+            response.data.message || "Found Item has been deleted successfully"
+          );
+        }
+      } catch (error) {
+        setError(error.response.data.message || "Something went wrong");
+      } finally {
+        setLoading(false);
+      }
+    };
+
   useEffect(() => {
     const fetchFoundItems = async () => {
       const response = await AXIOS_INSTANCE.get(
@@ -59,7 +78,7 @@ const ManageFounds = () => {
               key={item._id}
               item={item}
               onStatusChange={onStatusChange}
-              onDelete={() => {}}
+              onDelete={handleDelete}
             />
           ))}
           {foundItems.length === 0 && (

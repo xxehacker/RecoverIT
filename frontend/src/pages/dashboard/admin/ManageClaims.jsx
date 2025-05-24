@@ -21,12 +21,33 @@ const ManageClaims = () => {
         console.log(response.data?.claimItem);
         toast.success(response.data?.message || "Claim status updated");
         setClaims((prev) =>
-          prev.map((item) => (item._id === id ? response.data?.claimItem : item))
+          prev.map((item) =>
+            item._id === id ? response.data?.claimItem : item
+          )
         ); // update the lost item in the state
       }
     } catch (error) {
       console.log(error);
       toast.error(error.response.data?.message || "Failed to update claim");
+    }
+  };
+
+  const handleDelete = async (id) => {
+    setLoading(true);
+    setError(null);
+    try {
+      const response = await AXIOS_INSTANCE.delete(
+        API_ENDPOINTS.ADMIN.DELETE_CLAIM_ITEM(id)
+      );
+      if (response.status === 200) {
+        toast.success(
+          response.data.message || "Claim Report deleted successfully"
+        );
+      }
+    } catch (error) {
+      setError(error.response.data.message || "Something went wrong");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -45,7 +66,7 @@ const ManageClaims = () => {
       }
     };
     fetchClaims();
-  }, []);
+  }, [handleDelete]);
 
   return (
     <DashboardLayout activeMenu="Claim Items">
@@ -54,10 +75,10 @@ const ManageClaims = () => {
         <div className="space-y-4">
           {claims.map((item) => (
             <ManageClaimCard
-              type={"Claim"}           
+              type={"Claim"}
               item={item}
               onStatusChange={onStatusChange}
-              onDelete={() => {}}
+              onDelete={handleDelete}
             />
           ))}
           {claims.length === 0 && (

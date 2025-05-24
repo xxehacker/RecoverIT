@@ -2,6 +2,7 @@ import React from "react";
 import { Trash2 } from "lucide-react";
 
 const ManageitemCard = ({ item, onDelete, onStatusChange }) => {
+  console.log(item)
   return (
     <div className="flex flex-col bg-white/50 shadow-2xl shadow-gray-400 rounded-2xl p-4 mb-4 border">
       {/* Attachments */}
@@ -31,7 +32,7 @@ const ManageitemCard = ({ item, onDelete, onStatusChange }) => {
           Found Images
         </label>
         <div className="w-full flex gap-4">
-          {item?.attachments?.map((src, i) => (
+          {item?.foundItemId?.images?.map((src, i) => (
             <img
               key={i}
               src={`http://localhost:9000/${src}`}

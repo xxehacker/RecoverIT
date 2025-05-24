@@ -35,6 +35,7 @@ const Home = () => {
           location: "University Library",
           date: "2025-04-28",
           image: "/api/placeholder/100/100",
+          path:"/lost-reports"
         },
         {
           _id: "2",
@@ -43,6 +44,7 @@ const Home = () => {
           location: "Student Center",
           date: "2025-04-29",
           image: "/api/placeholder/100/100",
+          path:"/found-reports"
         },
         {
           _id: "3",
@@ -51,6 +53,7 @@ const Home = () => {
           location: "Cafeteria",
           date: "2025-04-27",
           image: "/api/placeholder/100/100",
+          path:"/lost-reports"
         },
       ]);
 
@@ -89,7 +92,7 @@ const Home = () => {
                 </p>
               </div>
               <Link
-                to="/items"
+                to="/lost-reports"
                 className="text-blue-400 hover:text-blue-300 font-medium group flex items-center mt-4 md:mt-0"
               >
                 View All Items
@@ -145,7 +148,7 @@ const Home = () => {
                       </div>
                       <div className="mt-4 pt-4 border-t border-blue-900/30">
                         <Link
-                          to={`/items/${item._id}`}
+                          to={`${item.path}`}
                           className="inline-flex items-center text-blue-400 hover:text-blue-300 text-sm font-medium group"
                         >
                           View Details

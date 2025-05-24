@@ -39,9 +39,9 @@ export const API_ENDPOINTS = {
     UPDATE_FOUND_ITEM: "/api/v1/admin/update-found-item", // update found item by id
     UPDATE_CLAIM_ITEM: "/api/v1/admin/update-claim-item", // update claim item by id
     // DELETE LOST , FOUND , CLAIM ITEMS
-    DELETE_LOST_ITEM: (id) => `/api/v1/admin/lostItems/${id}`, // delete lost item by id
-    DELETE_FOUND_ITEM: (id) => `/api/v1/admin/foundItems/${id}`, // delete found item by id
-    DELETE_CLAIM_ITEM: (id) => `/api/v1/admin/claimItems/${id}`, // delete claim item by id
+    DELETE_LOST_ITEM: (id) => `/api/v1/admin/lost-items/${id}`, // delete lost item by id
+    DELETE_FOUND_ITEM: (id) => `/api/v1/admin/found-items/${id}`, // delete found item by id
+    DELETE_CLAIM_ITEM: (id) => `/api/v1/admin/claim-items/${id}`, // delete claim item by id
     // GET DASHBOARD DATA
     GET_ADMIN_DASHBOARD_DATA: "/api/v1/dashboard/admin", // get dashboard data - method get
   },

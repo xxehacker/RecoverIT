@@ -76,10 +76,14 @@ const updateClaimItem = async (req, res) => {
       reviewDate = null;
     }
 
-    const claimItem = await ClaimItem.findByIdAndUpdate(id, {
-      status,
-      reviewDate,
-    }, { new: true });
+    const claimItem = await ClaimItem.findByIdAndUpdate(
+      id,
+      {
+        status,
+        reviewDate,
+      },
+      { new: true }
+    );
 
     if (!claimItem) {
       return res.status(404).json({ message: "Claim item not found" });

@@ -29,6 +29,16 @@ const userSchema = new mongoose.Schema(
       trim: true,
       lowercase: true,
     },
+    // universityIdCardNumber: {
+    //   type: String,
+    //   required: true,
+    //   trim: true,
+    //   lowercase: true,
+    // },
+    // universityIdCardImage: {
+    //   type: String,
+    //   required: true,
+    // },
   },
   { timestamps: true }
 );
